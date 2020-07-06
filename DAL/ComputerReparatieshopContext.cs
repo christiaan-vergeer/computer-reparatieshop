@@ -9,7 +9,7 @@ namespace computer_reparatieshop.DAL
 {
     public class ComputerReparatieshopContext :  DbContext
     {
-        public ComputerReparatieshopContext() : base("raparaties")
+        public ComputerReparatieshopContext() : base("reparaties")
         {
 
         }

@@ -74,6 +74,14 @@ namespace computer_reparatieshop.Controllers
             return View(reparatieopdrachten);
         }
 
+        public ActionResult Countstate(int value)
+        {
+            if (value == 1)
+            {
+              var count = db.
+            }
+        }
+
         // POST: Reparatieopdrachtens/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

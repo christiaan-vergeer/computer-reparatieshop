@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+
 
 namespace computer_reparatieshop.Models
 {
@@ -25,6 +27,7 @@ namespace computer_reparatieshop.Models
     {
         Pending,
         Underway,
+        [Display(Name ="Waiting for parts")]
         Waitingforparts,
         Done
     }

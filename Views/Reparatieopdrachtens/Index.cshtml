@@ -1,51 +1,81 @@
 ﻿@model IEnumerable<computer_reparatieshop.Models.Reparatieopdrachten>
 
-@{
-    ViewBag.Title = "Index";
-}
+    @{
+        ViewBag.Title = "Reparatie Indexcss";
+    }
 
-<h2>Index</h2>
+    <div style="overflow: hidden;   display:flex; justify-content:flex-start;">
+        <div style="float: left">
+            <h2>Reparatie Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.startdate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.enddate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.status)
-        </th>
-        <th></th>
-    </tr>
+        </div>
+        <div style="margin: auto;">
+            <table class="table" style="margin-bottom: 0px;">
+                <tr>
+                    <th>
+                        Pending =  
+                    </th>
+                    <th>
+                        Underway =
+                    </th>
+                    <th>
+                        Waiting for Parts =
+                    </th>
+                    <th>
+                        Done =
+                    </th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+    </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.startdate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.enddate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.startdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.enddate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.startdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.enddate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+            }
+
+    </table>
