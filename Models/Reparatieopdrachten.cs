@@ -27,8 +27,8 @@ namespace computer_reparatieshop.Models
     {
         Pending,
         Underway,
-        [Display(Name ="Waiting for parts")]
-        Waitingforparts,
+        [Display(Name = "Waiting for parts")]
+        WaitingForParts,
         Done
     }
 }
