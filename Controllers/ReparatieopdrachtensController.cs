@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using computer_reparatieshop.DAL;
 using computer_reparatieshop.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace computer_reparatieshop.Controllers
 {
@@ -18,6 +19,12 @@ namespace computer_reparatieshop.Controllers
         // GET: Reparatieopdrachtens
         public ActionResult Index()
         {
+            int repairOrdersCount = (db.Reparaties.ToList()).Count();
+            ViewBag.Pending = Countstate(status.Pending);
+            ViewBag.Underway = Countstate(status.Underway);
+            ViewBag.WaitingForParts = Countstate(status.WaitingForParts);
+            ViewBag.Done = Countstate(status.Done);
+            ViewBag.RepairOrdersCount = repairOrdersCount;
             return View(db.Reparaties.ToList());
         }
 
@@ -74,13 +81,25 @@ namespace computer_reparatieshop.Controllers
             return View(reparatieopdrachten);
         }
 
-        public ActionResult Countstate(int value)
+        public int Countstate(status status2)
         {
-            if (value == 1)
+            int count = 0;
+            var dbReparatiesList = db.Reparaties.ToList();
+
+
+
+            for (int i = 0; i < dbReparatiesList.Count; i++)
             {
-              var count = db.
+                if (dbReparatiesList[i].status == status2)
+                {
+                    count++;
+                }
             }
+
+            return count;
         }
+
+
 
         // POST: Reparatieopdrachtens/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 

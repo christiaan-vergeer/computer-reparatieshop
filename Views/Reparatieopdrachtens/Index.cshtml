@@ -1,63 +1,89 @@
 ﻿@model IEnumerable<computer_reparatieshop.Models.Reparatieopdrachten>
 
-    @{
-        ViewBag.Title = "Reparatie Indexcss";
-    }
+@{
+    ViewBag.Title = "Reparatie Index";
 
-    <div style="overflow: hidden;   display:flex; justify-content:flex-start;">
-        <div style="float: left">
-            <h2>Reparatie Index</h2>
+}
 
-        </div>
-        <div style="margin: auto;">
-            <table class="table" style="margin-bottom: 0px;">
-                <tr>
-                    <th>
-                        Pending =  
-                    </th>
-                    <th>
-                        Underway =
-                    </th>
-                    <th>
-                        Waiting for Parts =
-                    </th>
-                    <th>
-                        Done =
-                    </th>
-                    <th></th>
-                </tr>
-            </table>
-        </div>
+<div style="overflow: hidden;   display:flex; justify-content:flex-start;">
+    <div style="float: left">
+        <h2>Reparatie Index</h2>
+
     </div>
+    <div style="margin: auto;">
+        <table class="table" style="margin-bottom: 0px;">
+            <tr>
+                <th>
+                    Pending = @ViewBag.Pending
+                </th>
+                <th>
+                    Underway = @ViewBag.Underway
+                </th>
+                <th>
+                    Waiting for parts = @ViewBag.WaitingForParts
+                </th>
+                <th>
+                    Done = @ViewBag.Done
+                </th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+</div>
 
 
 
 
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.startdate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.enddate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.status)
-            </th>
-            <th></th>
-        </tr>
+<table class="table">
+    @*@{
+            Html.DisplayNameFor(model => model.name) {
 
-        @foreach (var item in Model)
+            }
+            for (int i = 0; i < ViewBag.RepairOrdersCount; i++)
             {
-        <tr>
+                if (model.name)
+                {
+
+                }
+            }
+        }*@
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.enddate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        string backgroundClass = "White";
+        string statusClass = item.status.ToString();
+        if (item.startdate.Ticks < DateTime.Now.Ticks && item.status.ToString() == "Pending")
+        {
+            backgroundClass = "Red";
+        }
+        else
+        {
+            backgroundClass = "White";
+        }
+
+
+
+        <tr class=@backgroundClass; id=@statusClass>
             <td>
                 @Html.DisplayFor(modelItem => item.name)
             </td>
@@ -76,6 +102,7 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
-            }
 
-    </table>
+    }
+
+</table>
