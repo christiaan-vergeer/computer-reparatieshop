@@ -9,11 +9,12 @@ namespace computer_reparatieshop.DAL
 {
     public class ComputerReparatieshopContext :  DbContext
     {
-        public ComputerReparatieshopContext() : base("reparaties")
+        public ComputerReparatieshopContext() : base("DefaultConnection")
         {
 
         }
 
         public DbSet<Reparatieopdrachten> Reparaties { get; set; }
+        public DbSet<Customer> Customers { get; set; }
     }
 }

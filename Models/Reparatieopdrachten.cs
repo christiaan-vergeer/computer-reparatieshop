@@ -12,18 +12,19 @@ namespace computer_reparatieshop.Models
     {
         public int Id { get; set; }
         
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime startdate { get; set; }
+        public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
-        public DateTime enddate { get; set; }
-        public status status { get; set; }
-
-
+        public DateTime EndDate { get; set; }
+        public Status Status { get; set; }
+        public string Description { get; set; }
+        public Customer Customer { get; set; }
     }
 
-    public enum status
+
+    public enum Status
     {
         Pending,
         Underway,

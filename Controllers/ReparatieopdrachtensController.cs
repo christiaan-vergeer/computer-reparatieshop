@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using computer_reparatieshop.DAL;
 using computer_reparatieshop.Models;
+using computer_reparatieshop.ViewModels;
 using Microsoft.Ajax.Utilities;
 
 namespace computer_reparatieshop.Controllers
@@ -19,12 +21,10 @@ namespace computer_reparatieshop.Controllers
         // GET: Reparatieopdrachtens
         public ActionResult Index()
         {
-            int repairOrdersCount = (db.Reparaties.ToList()).Count();
-            ViewBag.Pending = Countstate(status.Pending);
-            ViewBag.Underway = Countstate(status.Underway);
-            ViewBag.WaitingForParts = Countstate(status.WaitingForParts);
-            ViewBag.Done = Countstate(status.Done);
-            ViewBag.RepairOrdersCount = repairOrdersCount;
+            ViewBag.Pending = Countstate(Status.Pending);
+            ViewBag.Underway = Countstate(Status.Underway);
+            ViewBag.WaitingForParts = Countstate(Status.WaitingForParts);
+            ViewBag.Done = Countstate(Status.Done);
             return View(db.Reparaties.ToList());
         }
 
@@ -46,7 +46,12 @@ namespace computer_reparatieshop.Controllers
         // GET: Reparatieopdrachtens/Create
         public ActionResult Create()
         {
-            return View();
+            RepairOrderVM repairOrderVM = new RepairOrderVM()
+            {
+                Customers = db.Customers.ToList(),
+                RepairOrder = new Reparatieopdrachten()
+            };
+            return View(repairOrderVM);
         }
 
         // POST: Reparatieopdrachtens/Create
@@ -54,16 +59,17 @@ namespace computer_reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,name,startdate,enddate,status")] Reparatieopdrachten reparatieopdrachten)
+        public ActionResult Create(RepairOrderVM RepairOrderVM)
         {
             if (ModelState.IsValid)
             {
-                db.Reparaties.Add(reparatieopdrachten);
+                RepairOrderVM.RepairOrder.Status = Status.Pending;
+                db.Reparaties.Add(RepairOrderVM.RepairOrder);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(reparatieopdrachten);
+            return View(RepairOrderVM);
         }
 
         // GET: Reparatieopdrachtens/Edit/5
@@ -81,7 +87,7 @@ namespace computer_reparatieshop.Controllers
             return View(reparatieopdrachten);
         }
 
-        public int Countstate(status status2)
+        public int Countstate(Status status2)
         {
             int count = 0;
             var dbReparatiesList = db.Reparaties.ToList();
@@ -90,7 +96,7 @@ namespace computer_reparatieshop.Controllers
 
             for (int i = 0; i < dbReparatiesList.Count; i++)
             {
-                if (dbReparatiesList[i].status == status2)
+                if (dbReparatiesList[i].Status == status2)
                 {
                     count++;
                 }
@@ -106,7 +112,7 @@ namespace computer_reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,name,startdate,enddate,status")] Reparatieopdrachten reparatieopdrachten)
+        public ActionResult Edit([Bind(Include = "Id,name,startdate,enddate,status,notes")] Reparatieopdrachten reparatieopdrachten)
         {
             if (ModelState.IsValid)
             {
