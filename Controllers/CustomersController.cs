@@ -51,10 +51,11 @@ namespace computer_reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,RegisterDate,BirthDate,Status,TotalOrderCount,OpenOrderCount")] Customer customer)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,EmailAddress,RegisterDate,BirthDate,TotalOrderCount,OpenOrderCount")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                customer.RegisterDate = DateTime.Now;
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
