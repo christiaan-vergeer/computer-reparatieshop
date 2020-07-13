@@ -48,10 +48,10 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.RepairOrder.Customer, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.RepairOrder.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.CustomerId, new SelectList(Model.Customers, "Id", "FullName"), new { @class = "control-label col-md-2" })
-            @Html.ValidationMessageFor(model => model.RepairOrder.Customer, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
         </div>
     </div>
 

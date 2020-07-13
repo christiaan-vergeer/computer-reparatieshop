@@ -181,6 +181,10 @@
     <Compile Include="Migrations\202007130817146_reparatie.designer.cs">
       <DependentUpon>202007130817146_reparatie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007131204075_CustomerName.cs" />
+    <Compile Include="Migrations\202007131204075_CustomerName.designer.cs">
+      <DependentUpon>202007131204075_CustomerName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomerModel.cs" />
@@ -189,6 +193,7 @@
     <Compile Include="Models\Reparatieopdrachten.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CustomerVM.cs" />
     <Compile Include="ViewModels\RepairOrderVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +207,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -277,6 +283,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202007130817146_reparatie.resx">
       <DependentUpon>202007130817146_reparatie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007131204075_CustomerName.resx">
+      <DependentUpon>202007131204075_CustomerName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
