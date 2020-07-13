@@ -28,6 +28,26 @@ namespace computer_reparatieshop.Controllers
             return View(db.Reparaties.ToList());
         }
 
+
+        public int Countstate(Status status2)
+        {
+            int count = 0;
+            var dbReparatiesList = db.Reparaties.ToList();
+
+
+
+            for (int i = 0; i < dbReparatiesList.Count; i++)
+            {
+                if (dbReparatiesList[i].Status == status2)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+
         // GET: Reparatieopdrachtens/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,12 +55,16 @@ namespace computer_reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reparatieopdrachten reparatieopdrachten = db.Reparaties.Find(id);
-            if (reparatieopdrachten == null)
+            RepairOrderVM repairOrderVM = new RepairOrderVM
+            {
+                RepairOrder = db.Reparaties.FirstOrDefault(r => r.Id == id),
+                Customers = db.Customers.ToList()
+            };
+            if (repairOrderVM == null)
             {
                 return HttpNotFound();
             }
-            return View(reparatieopdrachten);
+            return View(repairOrderVM);
         }
 
         // GET: Reparatieopdrachtens/Create
@@ -64,6 +88,7 @@ namespace computer_reparatieshop.Controllers
             if (ModelState.IsValid)
             {
                 RepairOrderVM.RepairOrder.Status = Status.Pending;
+                RepairOrderVM.RepairOrder.CustomerName = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).FullName;
                 db.Reparaties.Add(RepairOrderVM.RepairOrder);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -79,32 +104,17 @@ namespace computer_reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reparatieopdrachten reparatieopdrachten = db.Reparaties.Find(id);
-            if (reparatieopdrachten == null)
+            RepairOrderVM repairOrderVM = new RepairOrderVM
+            {
+                RepairOrder = db.Reparaties.Find(id),
+                Customers = db.Customers.ToList()
+            };
+            if (repairOrderVM == null)
             {
                 return HttpNotFound();
             }
-            return View(reparatieopdrachten);
+            return View(repairOrderVM);
         }
-
-        public int Countstate(Status status2)
-        {
-            int count = 0;
-            var dbReparatiesList = db.Reparaties.ToList();
-
-
-
-            for (int i = 0; i < dbReparatiesList.Count; i++)
-            {
-                if (dbReparatiesList[i].Status == status2)
-                {
-                    count++;
-                }
-            }
-
-            return count;
-        }
-
 
 
         // POST: Reparatieopdrachtens/Edit/5
@@ -112,15 +122,17 @@ namespace computer_reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,name,startdate,enddate,status,notes")] Reparatieopdrachten reparatieopdrachten)
+        public ActionResult Edit([Bind(Include = "CustomerId,RepairOrder")] RepairOrderVM RepairOrderVM)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(reparatieopdrachten).State = EntityState.Modified;
+                RepairOrderVM.RepairOrder.CustomerName = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).FullName;
+
+                db.Entry(RepairOrderVM.RepairOrder).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(reparatieopdrachten);
+            return View(RepairOrderVM);
         }
 
         // GET: Reparatieopdrachtens/Delete/5
@@ -130,12 +142,16 @@ namespace computer_reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reparatieopdrachten reparatieopdrachten = db.Reparaties.Find(id);
-            if (reparatieopdrachten == null)
+            RepairOrderVM repairOrderVM = new RepairOrderVM
+            {
+                RepairOrder = db.Reparaties.Find(id),
+                Customers = db.Customers.ToList()
+            };
+            if (repairOrderVM == null)
             {
                 return HttpNotFound();
             }
-            return View(reparatieopdrachten);
+            return View(repairOrderVM);
         }
 
         // POST: Reparatieopdrachtens/Delete/5

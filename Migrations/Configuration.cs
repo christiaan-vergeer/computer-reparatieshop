@@ -15,11 +15,11 @@
 
         protected override void Seed(DAL.ComputerReparatieshopContext context)
         {
-            context.Reparaties.AddOrUpdate(x => x.Id,
-                new Reparatie() { Id = 1, Name = "Jane Austen" },
-                new Reparatie() { Id = 2, Name = "Charles Dickens" },
-                new Reparatie() { Id = 3, Name = "Miguel de Cervantes" }
-                );
+            //context.Reparaties.AddOrUpdate(x => x.Id,
+            //    new Reparatie() { Id = 1, Name = "Jane Austen" },
+            //    new Reparatie() { Id = 2, Name = "Charles Dickens" },
+            //    new Reparatie() { Id = 3, Name = "Miguel de Cervantes" }
+            //    );
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
