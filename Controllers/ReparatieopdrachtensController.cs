@@ -91,10 +91,10 @@ namespace computer_reparatieshop.Controllers
                 db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount + 1;
                 RepairOrderVM.RepairOrder.Status = Status.Pending;
                 RepairOrderVM.RepairOrder.CustomerName = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).FullName;
-                if (repairOrderVM.RepairOrder.StartDate.Ticks == 0)
-                    repairOrderVM.RepairOrder.StartDate = DateTime.Now.Date;
-                if (repairOrderVM.RepairOrder.EndDate.Ticks == 0)
-                    repairOrderVM.RepairOrder.EndDate = DateTime.Now.Date;
+                if (RepairOrderVM.RepairOrder.StartDate.Ticks == 0)
+                    RepairOrderVM.RepairOrder.StartDate = DateTime.Now.Date;
+                if (RepairOrderVM.RepairOrder.EndDate.Ticks == 0)
+                    RepairOrderVM.RepairOrder.EndDate = DateTime.Now.Date;
                 db.Reparaties.Add(RepairOrderVM.RepairOrder);
                 db.SaveChanges();
                 return RedirectToAction("Index");
