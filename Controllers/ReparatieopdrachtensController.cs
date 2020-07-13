@@ -8,6 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using computer_reparatieshop.DAL;
 using computer_reparatieshop.Models;
+using Microsoft.AspNetCore.Mvc;
+using ActionNameAttribute = System.Web.Mvc.ActionNameAttribute;
+using ActionResult = System.Web.Mvc.ActionResult;
+using BindAttribute = System.Web.Mvc.BindAttribute;
+using HttpPostAttribute = System.Web.Mvc.HttpPostAttribute;
 
 namespace computer_reparatieshop.Controllers
 {
@@ -74,12 +79,21 @@ namespace computer_reparatieshop.Controllers
             return View(reparatieopdrachten);
         }
 
-        public ActionResult Countstate(int value)
+        public int Countstate(string inputStatus)
         {
-            if (value == 1)
+            int count = 0;
+            var dbReparatiesList = db.Reparaties.ToList();
+
+            for (int i = 0; i < dbReparatiesList.Count; i++)
             {
-              var count = db.
+                if (dbReparatiesList[0].status.ToString() == inputStatus)
+                {
+                    count++;
+                }
             }
+
+
+            return count;
         }
 
         // POST: Reparatieopdrachtens/Edit/5
