@@ -12,23 +12,26 @@ namespace computer_reparatieshop.Models
     {
         public int Id { get; set; }
         
-        public string name { get; set; }
+        public string Name { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime startdate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
-        public DateTime enddate { get; set; }
-        public status status { get; set; }
-
-
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime EndDate { get; set; }
+        public Status Status { get; set; }
+        public string Description { get; set; }
+        public string CustomerName { get; set; }
     }
 
-    public enum status
+
+    public enum Status
     {
         Pending,
         Underway,
-        [Display(Name ="Waiting for parts")]
-        Waitingforparts,
+        [Display(Name = "Waiting for parts")]
+        WaitingForParts,
         Done
     }
 }

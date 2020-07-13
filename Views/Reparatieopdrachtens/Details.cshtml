@@ -1,4 +1,4 @@
-﻿@model computer_reparatieshop.Models.Reparatieopdrachten
+﻿@model computer_reparatieshop.ViewModels.RepairOrderVM
 
 @{
     ViewBag.Title = "Details";
@@ -11,40 +11,57 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.name)
+            @Html.DisplayNameFor(model => model.RepairOrder.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.name)
+            @Html.DisplayFor(model => model.RepairOrder.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.startdate)
+            @Html.DisplayNameFor(model => model.RepairOrder.StartDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.startdate)
+            @Html.DisplayFor(model => model.RepairOrder.StartDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.enddate)
+            @Html.DisplayNameFor(model => model.RepairOrder.EndDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.enddate)
+            @Html.DisplayFor(model => model.RepairOrder.EndDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.status)
+            @Html.DisplayNameFor(model => model.RepairOrder.Status)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.status)
+            @Html.DisplayFor(model => model.RepairOrder.Status)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RepairOrder.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepairOrder.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RepairOrder.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RepairOrder.CustomerName)
+        </dd>
+
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RepairOrder.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
