@@ -144,6 +144,12 @@ namespace computer_reparatieshop.Controllers
                 RepairOrderVM.RepairOrder.CustomerName = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).FullName;
 
                 db.Entry(RepairOrderVM.RepairOrder).State = EntityState.Modified;
+
+                if(RepairOrderVM.RepairOrder.Status.ToString() ==  "Done")
+                {
+                    db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount - 1;
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -176,6 +182,13 @@ namespace computer_reparatieshop.Controllers
         {
             Reparatieopdrachten reparatieopdrachten = db.Reparaties.Find(id);
             db.Reparaties.Remove(reparatieopdrachten);
+
+
+            //db.Customers.FirstOrDefault(c => c.Id == Reparatieopdrachten.CustomerId).TotalOrderCount = db.Customers.FirstOrDefault(c => c.Id == Reparatieopdrachten.CustomerId).TotalOrderCount - 1;
+            //if (!Reparatieopdrachten.RepairOrder.Status.ToString() == "Done")
+            //{
+            //    db.Customers.FirstOrDefault(c => c.Id == Reparatieopdrachten.CustomerId).OpenOrderCount = db.Customers.FirstOrDefault(c => c.Id == Reparatieopdrachten.CustomerId).OpenOrderCount - 1;
+            //}
             db.SaveChanges();
             return RedirectToAction("Index");
         }
