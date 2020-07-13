@@ -15,11 +15,14 @@ namespace computer_reparatieshop.Models
         public string LastName { get; set; }
         public string FullName => $"{FirstName} {LastName}";
 
+        public string EmailAddress { get; set; }
+
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime RegisterDate { get; set; }
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime BirthDate { get; set; }
-        public Status Status { get; set; }
         public int TotalOrderCount { get; set; }
         public int OpenOrderCount { get; set; }
     }
