@@ -31,7 +31,7 @@ namespace computer_reparatieshop.Controllers
             }
             CustomerVM customerVM = new CustomerVM
             {
-                //customer = db.Customers.FirstOrDefault(r => r.Id == id),
+                Customer = db.Customers.FirstOrDefault(r => r.Id == id),
             };
             if (customerVM == null)
             {
@@ -43,7 +43,11 @@ namespace computer_reparatieshop.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
-            return View();
+            CustomerVM customerVM = new CustomerVM()
+            {
+                Customer = new Customer()
+            };
+            return View(customerVM);
         }
 
         // POST: Customers/Create
@@ -56,6 +60,9 @@ namespace computer_reparatieshop.Controllers
             if (ModelState.IsValid)
             {
                 customer.RegisterDate = DateTime.Now;
+                if (customer.BirthDate.Ticks == 0)
+                    customer.BirthDate = DateTime.Now.Date;
+
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -71,12 +78,15 @@ namespace computer_reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            CustomerVM customerVM = new CustomerVM
+            {
+                Customer = db.Customers.Find(id),
+            };
+            if (customerVM == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(customerVM);
         }
 
         // POST: Customers/Edit/5
@@ -84,15 +94,15 @@ namespace computer_reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,RegisterDate,BirthDate,Status,TotalOrderCount,OpenOrderCount")] Customer customer)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,RegisterDate,BirthDate,Status,TotalOrderCount,OpenOrderCount")] CustomerVM customerVM)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
+                db.Entry(customerVM).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            return View(customerVM);
         }
 
         // GET: Customers/Delete/5
