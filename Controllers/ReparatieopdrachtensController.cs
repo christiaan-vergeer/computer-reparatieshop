@@ -108,9 +108,16 @@ namespace computer_reparatieshop.Controllers
             }
             RepairOrderVM repairOrderVM = new RepairOrderVM
             {
+
                 RepairOrder = db.Reparaties.Find(id),
                 Customers = db.Customers.ToList()
             };
+
+            if (repairOrderVM.RepairOrder.StartDate.Ticks == 0)
+                repairOrderVM.RepairOrder.StartDate = DateTime.Now.Date;
+            if (repairOrderVM.RepairOrder.EndDate.Ticks == 0)
+                repairOrderVM.RepairOrder.EndDate = DateTime.Now.Date;
+
             if (repairOrderVM == null)
             {
                 return HttpNotFound();
