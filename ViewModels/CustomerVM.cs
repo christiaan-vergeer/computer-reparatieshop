@@ -9,6 +9,5 @@ namespace computer_reparatieshop.ViewModels
     public class CustomerVM
     {
         public Customer Customer { get; set; }
-        public List<Customer> Customers { get; set; }
     }
 }

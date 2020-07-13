@@ -19,7 +19,6 @@ namespace computer_reparatieshop.Models
         public DateTime RegisterDate { get; set; }
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
-        public Status Status { get; set; }
         public int TotalOrderCount { get; set; }
         public int OpenOrderCount { get; set; }
     }
