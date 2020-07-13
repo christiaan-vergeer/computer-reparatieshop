@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using computer_reparatieshop.DAL;
 using computer_reparatieshop.Models;
+using computer_reparatieshop.ViewModels;
 
 namespace computer_reparatieshop.Controllers
 {
@@ -28,12 +29,15 @@ namespace computer_reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
+            CustomerVM customerVM = new CustomerVM
+            {
+                //customer = db.Customers.FirstOrDefault(r => r.Id == id),
+            };
+            if (customerVM == null)
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(customerVM);
         }
 
         // GET: Customers/Create
