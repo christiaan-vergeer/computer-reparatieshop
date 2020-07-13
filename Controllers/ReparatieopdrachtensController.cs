@@ -83,10 +83,12 @@ namespace computer_reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RepairOrderVM RepairOrderVM)
+        public ActionResult Create(RepairOrderVM RepairOrderVM, CustomerVM CustomerVM)
         {
             if (ModelState.IsValid)
             {
+                db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).TotalOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).TotalOrderCount + 1;
+                db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount + 1;
                 RepairOrderVM.RepairOrder.Status = Status.Pending;
                 RepairOrderVM.RepairOrder.CustomerName = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).FullName;
                 db.Reparaties.Add(RepairOrderVM.RepairOrder);
@@ -126,6 +128,8 @@ namespace computer_reparatieshop.Controllers
         {
             if (ModelState.IsValid)
             {
+
+
                 RepairOrderVM.RepairOrder.CustomerName = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).FullName;
 
                 db.Entry(RepairOrderVM.RepairOrder).State = EntityState.Modified;
