@@ -177,29 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007100938029_initCRS.cs" />
-    <Compile Include="Migrations\202007100938029_initCRS.designer.cs">
-      <DependentUpon>202007100938029_initCRS.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007101114377_initDescription.cs" />
-    <Compile Include="Migrations\202007101114377_initDescription.designer.cs">
-      <DependentUpon>202007101114377_initDescription.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007101131037_initCustomerDB.cs" />
-    <Compile Include="Migrations\202007101131037_initCustomerDB.designer.cs">
-      <DependentUpon>202007101131037_initCustomerDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007101227335_ChangeName.cs" />
-    <Compile Include="Migrations\202007101227335_ChangeName.designer.cs">
-      <DependentUpon>202007101227335_ChangeName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007101234004_AddCustomer.cs" />
-    <Compile Include="Migrations\202007101234004_AddCustomer.designer.cs">
-      <DependentUpon>202007101234004_AddCustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007101320390_SecondName.cs" />
-    <Compile Include="Migrations\202007101320390_SecondName.designer.cs">
-      <DependentUpon>202007101320390_SecondName.cs</DependentUpon>
+    <Compile Include="Migrations\202007130817146_reparatie.cs" />
+    <Compile Include="Migrations\202007130817146_reparatie.designer.cs">
+      <DependentUpon>202007130817146_reparatie.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202007131204075_CustomerName.cs" />
     <Compile Include="Migrations\202007131204075_CustomerName.designer.cs">
@@ -301,23 +281,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007100938029_initCRS.resx">
-      <DependentUpon>202007100938029_initCRS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007101114377_initDescription.resx">
-      <DependentUpon>202007101114377_initDescription.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007101131037_initCustomerDB.resx">
-      <DependentUpon>202007101131037_initCustomerDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007101227335_ChangeName.resx">
-      <DependentUpon>202007101227335_ChangeName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007101234004_AddCustomer.resx">
-      <DependentUpon>202007101234004_AddCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007101320390_SecondName.resx">
-      <DependentUpon>202007101320390_SecondName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007130817146_reparatie.resx">
+      <DependentUpon>202007130817146_reparatie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007131204075_CustomerName.resx">
       <DependentUpon>202007131204075_CustomerName.cs</DependentUpon>
