@@ -139,6 +139,7 @@ namespace computer_reparatieshop.Controllers
                     db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount - 1;
                 }
 
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
