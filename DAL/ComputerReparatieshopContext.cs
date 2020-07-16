@@ -16,5 +16,6 @@ namespace computer_reparatieshop.DAL
 
         public DbSet<Reparatieopdrachten> Reparaties { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Repairer> Repairers { get; set; }
     }
 }

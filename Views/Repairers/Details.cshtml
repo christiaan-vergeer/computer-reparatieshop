@@ -1,0 +1,50 @@
+﻿@model computer_reparatieshop.ViewModels.RepairerVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Repairers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Repairer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Repairer.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Repairer.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Repairer.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Repairer.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Repairer.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Repairer.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Repairer.BirthDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Repairer.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -56,6 +56,14 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.RepairOrder.RepairerName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.RepairerId, new SelectList(Model.Repairers, "Id", "FullName"), new { @class = "control-label col-md-2" })
+            @Html.ValidationMessageFor(model => model.RepairerId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
         </div>

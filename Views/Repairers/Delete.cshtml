@@ -1,0 +1,56 @@
+﻿@model computer_reparatieshop.ViewModels.RepairerVM
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Repairers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Repairer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Repairer.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Repairer.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Repairer.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Repairer.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Repairer.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Repairer.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Repairer.BirthDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

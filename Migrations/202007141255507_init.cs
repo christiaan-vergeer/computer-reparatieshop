@@ -7,12 +7,12 @@
     {
         public override void Up()
         {
-            AddColumn("dbo.Customers", "EmailAddress", c => c.String());
+            AddColumn("dbo.Reparatieopdrachtens", "RepairerName", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Customers", "EmailAddress");
+            DropColumn("dbo.Reparatieopdrachtens", "RepairerName");
         }
     }
 }

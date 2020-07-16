@@ -172,23 +172,26 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RepairersController.cs" />
     <Compile Include="Controllers\ReparatieopdrachtensController.cs" />
     <Compile Include="DAL\ComputerReparatieshopContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007131301372_init.cs" />
-    <Compile Include="Migrations\202007131301372_init.designer.cs">
-      <DependentUpon>202007131301372_init.cs</DependentUpon>
+    <Compile Include="Migrations\202007141255507_init.cs" />
+    <Compile Include="Migrations\202007141255507_init.designer.cs">
+      <DependentUpon>202007141255507_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Repairer.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Reparatieopdrachten.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\RepairerVM.cs" />
     <Compile Include="ViewModels\CustomerVM.cs" />
     <Compile Include="ViewModels\RepairOrderVM.cs" />
   </ItemGroup>
@@ -259,6 +262,11 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Edit.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Repairers\Create.cshtml" />
+    <Content Include="Views\Repairers\Delete.cshtml" />
+    <Content Include="Views\Repairers\Details.cshtml" />
+    <Content Include="Views\Repairers\Edit.cshtml" />
+    <Content Include="Views\Repairers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -277,8 +285,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007131301372_init.resx">
-      <DependentUpon>202007131301372_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007141255507_init.resx">
+      <DependentUpon>202007141255507_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
