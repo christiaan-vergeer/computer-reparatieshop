@@ -1,4 +1,4 @@
-﻿@model IEnumerable<computer_reparatieshop.ViewModels.VirtualVM>
+﻿@model computer_reparatieshop.ViewModels.VirtualVM
 
 @{
     ViewBag.Title = "Index";
@@ -35,34 +35,34 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.customer)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                @Html.DisplayFor(modelItem => item.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.LastName)
+                @Html.DisplayFor(modelItem => item.LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.EmailAddress)
+                @Html.DisplayFor(modelItem => item.EmailAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.RegisterDate)
+                @Html.DisplayFor(modelItem => item.RegisterDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.BirthDate)
+                @Html.DisplayFor(modelItem => item.BirthDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.TotalOrderCount)
+                @Html.DisplayFor(modelItem => item.TotalOrderCount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Customer.OpenOrderCount)
+                @Html.DisplayFor(modelItem => item.OpenOrderCount)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Customer.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Customer.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Customer.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

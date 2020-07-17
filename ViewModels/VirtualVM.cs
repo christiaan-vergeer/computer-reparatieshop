@@ -12,6 +12,7 @@ namespace computer_reparatieshop.ViewModels
 
         public Customer Customer { get; set; }
 
+        public List<Customer> customer { get; set; }
         public Reparatieopdrachten Reparatieopdrachten { get; set; }
 
     }
