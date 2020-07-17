@@ -1,4 +1,4 @@
-﻿@model computer_reparatieshop.ViewModels.VirtualVM
+﻿@model computer_reparatieshop.Models.Customer
 
 @{
     ViewBag.Title = "Details";
@@ -11,66 +11,66 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Customer.FirstName)
+            @Html.DisplayNameFor(model => model.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Customer.FirstName)
+            @Html.DisplayFor(model => model.FirstName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Customer.LastName)
+            @Html.DisplayNameFor(model => model.LastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Customer.LastName)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Customer.EmailAddress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Customer.EmailAddress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Customer.RegisterDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Customer.RegisterDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Customer.BirthDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Customer.BirthDate)
+            @Html.DisplayFor(model => model.LastName)
         </dd>
 
 
         <dt>
-            @Html.DisplayNameFor(model => model.Customer.TotalOrderCount)
+            @Html.DisplayNameFor(model => model.EmailAddress)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Customer.TotalOrderCount)
+            @Html.DisplayFor(model => model.EmailAddress)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Customer.OpenOrderCount)
+            @Html.DisplayNameFor(model => model.RegisterDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Customer.OpenOrderCount)
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalOrderCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalOrderCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpenOrderCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpenOrderCount)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Customer.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

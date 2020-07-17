@@ -19,7 +19,17 @@ namespace computer_reparatieshop.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            VirtualVM virtualVM = new VirtualVM
+            {
+                
+                customer = db.Customers.ToList(),
+            };
+            foreach (var customer in virtualVM.customer)
+            {
+                customer.TotalOrderCount = db.Reparaties.Where(r => r.Customer.Id == customer.Id).Count();
+                customer.OpenOrderCount = db.Reparaties.Where(r => r.Customer.Id == customer.Id).Where(r => r.Status != Status.Done).Count();
+            }
+            return View(virtualVM);
         }
 
         // GET: Customers/Details/5
@@ -29,15 +39,7 @@ namespace computer_reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CustomerVM customerVM = new CustomerVM
-            {
-                Customer = db.Customers.FirstOrDefault(r => r.Id == id),
-            };
-            if (customerVM == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customerVM);
+            return View(db.Customers.FirstOrDefault(r => r.Id == id));
         }
 
         // GET: Customers/Create
@@ -78,15 +80,7 @@ namespace computer_reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CustomerVM customerVM = new CustomerVM
-            {
-                Customer = db.Customers.Find(id),
-            };
-            if (customerVM == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customerVM);
+            return View(db.Customers.Find(id));
         }
 
         // POST: Customers/Edit/5
@@ -94,15 +88,16 @@ namespace computer_reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,RegisterDate,BirthDate,Status,TotalOrderCount,OpenOrderCount")] CustomerVM customerVM)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,EmailAddress,RegisterDate,BirthDate,Status,TotalOrderCount,OpenOrderCount")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customerVM).State = EntityState.Modified;
+                
+                db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(customerVM);
+            return View(customer);
         }
 
         // GET: Customers/Delete/5

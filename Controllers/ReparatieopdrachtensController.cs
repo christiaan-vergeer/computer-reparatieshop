@@ -25,7 +25,8 @@ namespace computer_reparatieshop.Controllers
             ViewBag.Underway = Countstate(Status.Underway);
             ViewBag.WaitingForParts = Countstate(Status.WaitingForParts);
             ViewBag.Done = Countstate(Status.Done);
-            return View(db.Reparaties.ToList());
+            var rep = db.Reparaties.Include(r => r.Customer).ToList();
+            return View(rep);
         }
 
 
@@ -55,16 +56,7 @@ namespace computer_reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RepairOrderVM repairOrderVM = new RepairOrderVM
-            {
-                RepairOrder = db.Reparaties.FirstOrDefault(r => r.Id == id),
-                Customers = db.Customers.ToList()
-            };
-            if (repairOrderVM == null)
-            {
-                return HttpNotFound();
-            }
-            return View(repairOrderVM);
+            return View(db.Reparaties.Include(r => r.Customer).FirstOrDefault(r => r.Id == id));
         }
 
         // GET: Reparatieopdrachtens/Create
@@ -74,6 +66,10 @@ namespace computer_reparatieshop.Controllers
             {
                 Customers = db.Customers.ToList(),
                 RepairOrder = new Reparatieopdrachten()
+                {
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now
+                }
             };
             return View(repairOrderVM);
         }
@@ -83,18 +79,19 @@ namespace computer_reparatieshop.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RepairOrderVM RepairOrderVM, CustomerVM CustomerVM)
+        public ActionResult Create(RepairOrderVM RepairOrderVM)
         {
             if (ModelState.IsValid)
             {
-                db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).TotalOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).TotalOrderCount + 1;
-                db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount + 1;
-                RepairOrderVM.RepairOrder.Status = Status.Pending;
-               // RepairOrderVM.RepairOrder.custemerId = RepairOrderVM.CustomerId;
-                if (RepairOrderVM.RepairOrder.StartDate.Ticks == 0)
-                    RepairOrderVM.RepairOrder.StartDate = DateTime.Now.Date;
-                if (RepairOrderVM.RepairOrder.EndDate.Ticks == 0)
-                    RepairOrderVM.RepairOrder.EndDate = DateTime.Now.Date;
+               // db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).TotalOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).TotalOrderCount + 1;
+               // db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount + 1;
+               RepairOrderVM.RepairOrder.Status = Status.Pending;
+                //// RepairOrderVM.RepairOrder.custemerId = RepairOrderVM.CustomerId;
+                // if (RepairOrderVM.RepairOrder.StartDate.Ticks == 0)
+                //     RepairOrderVM.RepairOrder.StartDate = DateTime.Now.Date;
+                // if (RepairOrderVM.RepairOrder.EndDate.Ticks == 0)
+                //     RepairOrderVM.RepairOrder.EndDate = DateTime.Now.Date;
+                RepairOrderVM.RepairOrder.Customer = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId);
                 db.Reparaties.Add(RepairOrderVM.RepairOrder);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -112,20 +109,16 @@ namespace computer_reparatieshop.Controllers
             }
             RepairOrderVM repairOrderVM = new RepairOrderVM
             {
-
-                RepairOrder = db.Reparaties.Find(id),
+                RepairOrder = db.Reparaties.Include(r => r.Customer).FirstOrDefault(r => r.Id == id),
                 Customers = db.Customers.ToList()
             };
 
-            if (repairOrderVM.RepairOrder.StartDate.Ticks == 0)
-                repairOrderVM.RepairOrder.StartDate = DateTime.Now.Date;
-            if (repairOrderVM.RepairOrder.EndDate.Ticks == 0)
-                repairOrderVM.RepairOrder.EndDate = DateTime.Now.Date;
+            //if (repairOrderVM.RepairOrder.StartDate.Ticks == 0)
+            //    repairOrderVM.RepairOrder.StartDate = DateTime.Now.Date;
+            //if (repairOrderVM.RepairOrder.EndDate.Ticks == 0)
+            //    repairOrderVM.RepairOrder.EndDate = DateTime.Now.Date;
 
-            if (repairOrderVM == null)
-            {
-                return HttpNotFound();
-            }
+           
             return View(repairOrderVM);
         }
 
@@ -139,20 +132,9 @@ namespace computer_reparatieshop.Controllers
         {
             if (ModelState.IsValid)
             {
-
-
-                RepairOrderVM.RepairOrder.Id = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).Id;
-
-                db.Entry(RepairOrderVM.RepairOrder).State = EntityState.Modified;
-
-                //db.Reparaties.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).custemerId = db.Customers.FirstOrDefault(c => c.FullName == RepairOrderVM.RepairOrder.CustomerName).Id; 
-
-                if (RepairOrderVM.RepairOrder.Status.ToString() ==  "Done")
-                {
-                    db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount - 1;
-                }
-
-
+                Reparatieopdrachten rep = db.Reparaties.Include(r => r.Customer).FirstOrDefault(r => r.Id == RepairOrderVM.RepairOrder.Id);
+                rep.Customer = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId);
+                db.Entry(rep).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -166,16 +148,7 @@ namespace computer_reparatieshop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            RepairOrderVM repairOrderVM = new RepairOrderVM
-            {
-                RepairOrder = db.Reparaties.Find(id),
-                Customers = db.Customers.ToList()
-            };
-            if (repairOrderVM == null)
-            {
-                return HttpNotFound();
-            }
-            return View(repairOrderVM);
+            return View(db.Reparaties.Find(id));
         }
 
         // POST: Reparatieopdrachtens/Delete/5

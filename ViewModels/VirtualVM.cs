@@ -15,5 +15,8 @@ namespace computer_reparatieshop.ViewModels
         public List<Customer> customer { get; set; }
         public Reparatieopdrachten Reparatieopdrachten { get; set; }
 
+        public int TotalOrderCount { get; set; }
+        public int OpenOrderCount { get; set; }
+
     }
 }

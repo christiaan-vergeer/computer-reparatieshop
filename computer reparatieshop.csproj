@@ -178,33 +178,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007141030393_init.cs" />
-    <Compile Include="Migrations\202007141030393_init.designer.cs">
-      <DependentUpon>202007141030393_init.cs</DependentUpon>
+    <Compile Include="Migrations\202007170922065_init.cs" />
+    <Compile Include="Migrations\202007170922065_init.designer.cs">
+      <DependentUpon>202007170922065_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202007141052033_customeradd.cs" />
-    <Compile Include="Migrations\202007141052033_customeradd.designer.cs">
-      <DependentUpon>202007141052033_customeradd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007141130155_customeaddId.cs" />
-    <Compile Include="Migrations\202007141130155_customeaddId.designer.cs">
-      <DependentUpon>202007141130155_customeaddId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007141133179_customeraddtest.cs" />
-    <Compile Include="Migrations\202007141133179_customeraddtest.designer.cs">
-      <DependentUpon>202007141133179_customeraddtest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007141248443_usernameSwitch.cs" />
-    <Compile Include="Migrations\202007141248443_usernameSwitch.designer.cs">
-      <DependentUpon>202007141248443_usernameSwitch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007141317190_updateLayout.cs" />
-    <Compile Include="Migrations\202007141317190_updateLayout.designer.cs">
-      <DependentUpon>202007141317190_updateLayout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202007141329145_updateLayout2.cs" />
-    <Compile Include="Migrations\202007141329145_updateLayout2.designer.cs">
-      <DependentUpon>202007141329145_updateLayout2.cs</DependentUpon>
+    <Compile Include="Migrations\202007171005432_init2.cs" />
+    <Compile Include="Migrations\202007171005432_init2.designer.cs">
+      <DependentUpon>202007171005432_init2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -309,26 +289,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202007141030393_init.resx">
-      <DependentUpon>202007141030393_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007170922065_init.resx">
+      <DependentUpon>202007170922065_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007141052033_customeradd.resx">
-      <DependentUpon>202007141052033_customeradd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007141130155_customeaddId.resx">
-      <DependentUpon>202007141130155_customeaddId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007141133179_customeraddtest.resx">
-      <DependentUpon>202007141133179_customeraddtest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007141248443_usernameSwitch.resx">
-      <DependentUpon>202007141248443_usernameSwitch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007141317190_updateLayout.resx">
-      <DependentUpon>202007141317190_updateLayout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202007141329145_updateLayout2.resx">
-      <DependentUpon>202007141329145_updateLayout2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202007171005432_init2.resx">
+      <DependentUpon>202007171005432_init2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

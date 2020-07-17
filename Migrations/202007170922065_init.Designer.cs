@@ -7,13 +7,13 @@ namespace computer_reparatieshop.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class customeraddtest : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(customeraddtest));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "202007141133179_customeraddtest"; }
+            get { return "202007170922065_init"; }
         }
         
         string IMigrationMetadata.Source
