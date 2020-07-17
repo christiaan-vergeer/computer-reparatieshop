@@ -1,4 +1,4 @@
-﻿@model IEnumerable<computer_reparatieshop.Models.Customer>
+﻿@model IEnumerable<computer_reparatieshop.Models.VirtualModel>
 
 @{
     ViewBag.Title = "Index";
@@ -12,25 +12,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.Customer.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.Customer.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmailAddress)
+            @Html.DisplayNameFor(model => model.Customer.EmailAddress)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RegisterDate)
+            @Html.DisplayNameFor(model => model.Customer.RegisterDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BirthDate)
+            @Html.DisplayNameFor(model => model.Customer.BirthDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TotalOrderCount)
+            @Html.DisplayNameFor(model => model.Customer.TotalOrderCount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OpenOrderCount)
+            @Html.DisplayNameFor(model => model.Customer.OpenOrderCount)
         </th>
         <th></th>
     </tr>
@@ -39,25 +39,25 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.Customer.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.Customer.LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EmailAddress)
+                @Html.DisplayFor(modelItem => item.Customer.EmailAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RegisterDate)
+                @Html.DisplayFor(modelItem => item.Customer.RegisterDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
+                @Html.DisplayFor(modelItem => item.Customer.BirthDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotalOrderCount)
+                @Html.DisplayFor(modelItem => item.Customer.TotalOrderCount)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OpenOrderCount)
+                @Html.DisplayFor(modelItem => item.Customer.OpenOrderCount)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

@@ -22,7 +22,11 @@ namespace computer_reparatieshop.Models
         public DateTime EndDate { get; set; }
         public Status Status { get; set; }
         public string Description { get; set; }
-        public string CustomerName { get; set; }
+
+        //public string CustomerName { get; set; }
+
+       // public int custemerId { get; set; }
+       // public Customer Customer { get; set; }
     }
 
 

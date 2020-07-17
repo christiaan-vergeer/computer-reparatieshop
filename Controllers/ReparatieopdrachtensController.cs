@@ -90,7 +90,7 @@ namespace computer_reparatieshop.Controllers
                 db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).TotalOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).TotalOrderCount + 1;
                 db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount + 1;
                 RepairOrderVM.RepairOrder.Status = Status.Pending;
-                RepairOrderVM.RepairOrder.CustomerName = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).FullName;
+               // RepairOrderVM.RepairOrder.custemerId = RepairOrderVM.CustomerId;
                 if (RepairOrderVM.RepairOrder.StartDate.Ticks == 0)
                     RepairOrderVM.RepairOrder.StartDate = DateTime.Now.Date;
                 if (RepairOrderVM.RepairOrder.EndDate.Ticks == 0)
@@ -141,11 +141,13 @@ namespace computer_reparatieshop.Controllers
             {
 
 
-                RepairOrderVM.RepairOrder.CustomerName = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).FullName;
+                RepairOrderVM.RepairOrder.Id = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).Id;
 
                 db.Entry(RepairOrderVM.RepairOrder).State = EntityState.Modified;
 
-                if(RepairOrderVM.RepairOrder.Status.ToString() ==  "Done")
+                //db.Reparaties.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).custemerId = db.Customers.FirstOrDefault(c => c.FullName == RepairOrderVM.RepairOrder.CustomerName).Id; 
+
+                if (RepairOrderVM.RepairOrder.Status.ToString() ==  "Done")
                 {
                     db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount = db.Customers.FirstOrDefault(c => c.Id == RepairOrderVM.CustomerId).OpenOrderCount - 1;
                 }
@@ -182,14 +184,18 @@ namespace computer_reparatieshop.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Reparatieopdrachten reparatieopdrachten = db.Reparaties.Find(id);
-            db.Reparaties.Remove(reparatieopdrachten);
+
+           // int userid = db.Reparaties.Find(id).custemerId;
 
 
-            //db.Customers.FirstOrDefault(c => c.Id == Reparatieopdrachten.CustomerId).TotalOrderCount = db.Customers.FirstOrDefault(c => c.Id == Reparatieopdrachten.CustomerId).TotalOrderCount - 1;
-            //if (!Reparatieopdrachten.RepairOrder.Status.ToString() == "Done")
+            //db.Customers.Find(userid).TotalOrderCount = db.Customers.Find(userid).TotalOrderCount - 1;
+            //if (db.Reparaties.Find(id).Status.ToString() != "Done")
             //{
-            //    db.Customers.FirstOrDefault(c => c.Id == Reparatieopdrachten.CustomerId).OpenOrderCount = db.Customers.FirstOrDefault(c => c.Id == Reparatieopdrachten.CustomerId).OpenOrderCount - 1;
+            //    db.Customers.Find(userid).OpenOrderCount = db.Customers.Find(userid).OpenOrderCount - 1;
             //}
+
+
+            db.Reparaties.Remove(reparatieopdrachten);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
