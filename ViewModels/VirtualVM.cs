@@ -8,9 +8,11 @@ namespace computer_reparatieshop.ViewModels
 {
     public class VirtualVM
     {
-        public VirtualModel VirtualModel { get; set; }
+        //public VirtualModel VirtualModel { get; set; }
 
-        public Customer customer { get; set; }
+        public Customer Customer { get; set; }
+
+        public Reparatieopdrachten Reparatieopdrachten { get; set; }
 
     }
 }
